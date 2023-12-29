@@ -163,11 +163,11 @@ module ActiveModel
         attr_accessor :"#{attribute}_confirmation", :"#{attribute}_challenge"
 
         # Returns +self+ if the password is correct, otherwise +false+.
-        #
+        
         #   class User < ActiveRecord::Base
         #     has_secure_password validations: false
         #   end
-        #
+        
         #   user = User.new(name: 'david', password: 'mUc3m00RsqyRe')
         #   user.save
         #   user.authenticate_password('notright')      # => false

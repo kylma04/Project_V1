@@ -1,0 +1,65 @@
+<nav class="bg-gray-800 p-4">
+  <div class="flex items-center justify-between">
+    <div class="text-white">
+      <% if session[:participant_id]%>
+        <p>Vous êtes connecté en tant que participant</p>
+      <% elsif session[:administrator_id] %>
+        <p>Vous êtes connecté en tant qu'administrateur</p>
+      <% end %>
+    </div>
+    <div>
+    <% if session[:participant_id]%>
+      <%= form_with url: logout_participant_path, method: :delete, data: {confirm: "Êtes-vous sur de vouloir vous deconnecter ?"} do |f| %>
+        <%=f.submit 'Déconnexion'%>
+      <% end %>
+    <% elsif session[:administrator_id] %>
+      <%= form_with url: logout_administrator_path, method: :delete, data: {confirm: "Êtes-vous sur de vouloir vous deconnecter ?"} do |f| %>
+        <%= f.submit 'Déconnexion'%>
+      <% end %>
+    <% end %>
+    </div>
+  </div>
+</nav>
+
+<div class=" !content-center mt-[40px] ">
+  <nav class="text-red-500  mx-[350px] bg-gray-400 text-center font-bold text-[25px]">
+    C.A.L.E.N.D.R.I.E.R &nbsp; &nbsp; D.E &nbsp; &nbsp;N.E.T.T.O.Y.A.G.E
+  </nav>
+  <table class="border-solid border-black  mx-[400px]  bg-gradient-to-r from-blue-500 to-transparent text-center font-bold  h-[120px] text-[25px]">
+    <tr>
+      <th class="p-5 border-solid border-4 border-black text-black">Cleaning Day</th>
+      <th class="p-5 border-solid border-4 border-black text-black">Firstname</th>
+      <th class="p-5 border-solid border-4 border-black text-black">Lastname</th>
+      <th class="p-5 border-solid border-4 border-black text-black">Email</th>
+      <th class="p-5 border-solid border-4 border-black text-black" colspan="2">Options</th>
+    </tr>
+
+  <% 5.times do |index| %>
+    <% participant = @participants[index] %>
+    <tr>
+      <td class="p-5 border-solid border-4 border-black text-white"><%= @days[index % @days.length] %></td>
+      <th class="p-5 border-solid border-4 border-black text-white"><%= participant.firstname %></th>
+      <th class="p-5 border-solid border-4 border-black text-white"><%= participant.lastname %></th>
+      <th class="p-5 border-solid border-4 border-black text-white"><%= participant.email %></th>
+      <td class="p-1 border-solid border-4 border-black ">
+        <%# <% if @voting_open %>
+          <div class="text-xl font-bold">
+            <%= form_with url: logout_administrator_path, method: :delete, data: {confirm: "Êtes-vous sur de vouloir vous deconnecter ?"} do |f| %>
+              <div class="required: text-green-900 bg-slate-100 p-2">
+                <%= f.submit 'Bien'%>
+              </div>              
+            <% end %>
+            <%= form_with url: logout_administrator_path, method: :delete, data: {confirm: "Êtes-vous sur de vouloir vous deconnecter ?"} do |f| %>
+              <div class="required: text-red-900 bg-slate-100 p-2 mt-2">
+                <%= f.submit 'Pas bien'%>
+              </div>
+            <% end %>
+          </div>
+        <%# <% end %>
+      </td>
+    </tr>
+  <% end %>
+
+  </table>
+</div>
+

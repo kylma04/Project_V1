@@ -59,7 +59,7 @@ group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
 
-  gem "error_highlight", ">= 0.4.0", platforms: [:ruby]
+  # gem "error_highlight", ">= 0.6.0", platforms: [:ruby]
 end
 
 group :test do
@@ -67,3 +67,21 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+
+# gem "tailwindcss-rails", "~> 2.0" ">= 0"
+
+gem 'tailwindcss-rails', '~> 2.0', '>= 2.0.30'
+
+
+gem 'uuidtools'
+
+gem 'bcrypt', '~>3.1.7'
+
+gem 'ruby-calendarific'
+gem 'sidekiq'
+gem 'sidekiq-scheduler'
+gem 'redis'
+gem "interactor-rails", "~> 2.0"
+gem 'holidays'
+gem 'dotenv-rails', groups: [:development, :test]
