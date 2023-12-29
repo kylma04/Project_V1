@@ -79,9 +79,19 @@ gem 'uuidtools'
 gem 'bcrypt', '~>3.1.7'
 
 gem 'ruby-calendarific'
+
+
 gem 'sidekiq'
 gem 'sidekiq-scheduler'
 gem 'redis'
+
+gem 'slack-notifier'
+gem 'slack-ruby-client'
+gem 'async-websocket', '~> 0.8.0'
+
+
 gem "interactor-rails", "~> 2.0"
 gem 'holidays'
 gem 'dotenv-rails', groups: [:development, :test]
+gem 'httparty'
+gem "openssl"

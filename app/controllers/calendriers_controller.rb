@@ -1,8 +1,10 @@
+require 'sidekiq-scheduler'
 class CalendriersController < ApplicationController
   before_action :require_user
   def index
+    @voting_open = voting_open
     @participants = Participant.all
-    @days=["vendredi", "lundi", "mardi", "mercredi", "jeudi"]
+    @days=["jeudi", "vendredi", "lundi","mardi","mercredi",]
   end
 
   # ******JOUR FERIES******
@@ -17,23 +19,19 @@ class CalendriersController < ApplicationController
     response = capi.holidays(parameters)
   
     holiday_dates = response["response"]["holidays"].map{ |holiday| holiday["date"] }.map { |date| date["iso"] }
-    return holiday_dates
   end
 
-  def assign_participant
-    if Date.today.saturday? || Date.today.sunday? || holidays.include?(Date.today.to_s)
-      render json: { message: "Pas de corvée de nettoyage le week-end et les jours feriés !" }
-      return
-    end
 
-    participants = Participant.pluck(:id)
-    today_cleaner = participants.sample
+  def voting_open
+    
+    current_time = Time.now
+    vote_period = VotePeriode.first
 
-    Tasks.create(date: Date.today, participant_id: today_cleaner)
+    start_time = vote_period.periode_begin
+    end_time = vote_period.periode_end
 
-    render json: { message: "Participant #{today_cleaner} choisi pour la corvée de nettoyage aujourd'hui !" }
+    current_time >= start_time && current_time < end_time
   end
-
   
 
 

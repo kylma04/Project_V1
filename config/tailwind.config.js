@@ -7,7 +7,11 @@ module.exports = {
     './app/views/**/*',
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        'hero-pexels-pixabay-534151': "url('/app/assets/images/pexels-pixabay-534151.jpg')"
+      }
+    },
   },
   plugins: [],
 }

@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  helper_method :require_user
   def current_user
     current_participant || current_administrator
   end

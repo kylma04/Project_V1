@@ -1,8 +1,8 @@
 require 'ruby-calendarific'
 require 'holidays'
+
 class CreateCalendar
   include Interactor
-
   def call
     context.calendar = next_five_days
   end
@@ -43,6 +43,5 @@ class CreateCalendar
       end
     # end
   end
-
 end
 

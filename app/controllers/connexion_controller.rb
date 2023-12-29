@@ -1,3 +1,4 @@
+require 'sidekiq-scheduler'
 class ConnexionController < ApplicationController
   before_action :authenticate, only: [:index]
 
