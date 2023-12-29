@@ -1,0 +1,70 @@
+<nav class="bg-gray-800 p-2">
+  <div class="flex items-center justify-between">
+    <div class="text-white">
+      <% if session[:participant_id]%>
+        <p class="lg:text-[20px] text-[13px] text-bold">Vous êtes connecté en tant que participant</p>
+      <% elsif session[:administrator_id] %>
+        <p class="lg:text-[20px] text-[13px] text-bold">Vous êtes connecté en tant qu'administrateur</p>
+      <% end %>
+    </div>
+    <div>
+    <% if session[:participant_id]%>
+      <%= form_with url: logout_participant_path, method: :delete, data: {confirm: "Êtes-vous sur de vouloir vous deconnecter ?"} do |f| %>
+        <%=f.submit 'Déconnexion',class:"lg:text-[20px] text-red-500 font-bold  text-[15px]"%>
+      <% end %>
+    <% elsif session[:administrator_id] %>
+      <%= form_with url: logout_administrator_path, method: :delete, data: {confirm: "Êtes-vous sur de vouloir vous deconnecter ?"} do |f| %>
+        <%= f.submit 'Déconnexion',class:"lg:text-[20px] text-red-500 font-bold  text-[15px]"%>
+      <% end %>
+    <% end %>
+    </div>
+  </div>
+</nav>
+
+<div class="mt-[6%]  lg:mt-[2%] gb-red-500">
+  <nav class="  lg:mx-[10%] bg-gray-400 text-center font-bold  lg:text-[25px] mx-[10%] text-[15px]">
+    C.A.L.E.N.D.R.I.E.R &nbsp; &nbsp; D.E &nbsp; &nbsp;N.E.T.T.O.Y.A.G.E
+  </nav>
+  <div class="flex justify-center w-full">
+    <table class="lg:w-[80%] bg-red-500 border-solid border-black bg-gradient-to-r from-blue-500 to-transparent text-center font-bold text-[10px] lg:text-[25px]">
+      <tr>
+        <th class="lg:p-5 p-auto border-solid border-2 lg:border-4 border-black text-black">Cleaning Day</th>
+        <th class="lg:p-5 p-auto border-solid border-2 lg:border-4 border-black text-black">Firstname</th>
+        <th class="lg:p-5 p-auto border-solid border-2 lg:border-4 border-black text-black">Lastname</th>
+        <th class="lg:p-5 p-auto border-solid border-2 lg:border-4 border-black text-black">Email</th>
+        <th class="lg:p-5 p-auto border-solid border-2 lg:border-4 border-black text-black" colspan="2">Options</th>
+      </tr>
+
+      <% 5.times do |index| %>
+        <% participant = @participants[index] %>
+        <tr>
+          <td class="lg:p-5 p-auto border-solid border-2 lg:border-4 border-black text-white"><%= @days[index % @days.length] %></td>
+          <th class="lg:p-5 p-auto border-solid border-2 lg:border-4 border-black text-white"><%= participant.firstname %></th>
+          <th class="lg:p-5 p-auto border-solid border-2 lg:border-4 border-black text-white"><%= participant.lastname %></th>
+          <th class="lg:p-5 p-auto border-solid border-2 lg:border-4 border-black text-white"><%= participant.email %></th>
+          <td class="lg:p-5 p-auto border-solid border-2 lg:border-4 border-black ">
+            <% if @voting_open %>
+              <div class="lg:text-xl text-[10px] font-bold">
+                <%= form_with url: votes_path, method: :post do |f| %>
+                  <%= f.hidden_field :vote, value: 1%>
+                  <div class="required: text-green-900 hover:bg-black bg-slate-100 p-2">
+                    <%= f.submit 'Bien', class:"cursor-pointer"%>
+                  </div>
+                <% end %>
+                <%= form_with url: votes_path, method: :post do |f| %>
+                  <%= f.hidden_field :vote, value: 0%>
+                  <div class="required: text-red-900 hover:bg-black bg-slate-100 p-2 mt-2">
+                    <%= f.submit 'Pas bien', class:"cursor-pointer"%>
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+
+</div>
+
+

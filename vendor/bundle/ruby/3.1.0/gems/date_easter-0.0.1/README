@@ -1,0 +1,29 @@
+= date_easter:  calculate the day upon which Easter Sunday falls
+-----
+
+
+== OVERVIEW
+-----
+This module calculates the date upon which Easter falls, a date upon 
+which many holidays in the Western world depend.  It extends the
+Date class available in the Ruby standard library, adding the 
+class method Date::easter(year) and the instance method easter().
+
+
+== BUGS
+-----
+Julian / Orthodox easter calculations are not yet implemented.
+
+
+== LICENSE
+-----
+This program is free software!  You can copy, modify, share and
+distribute it under the same license as Ruby itself.
+
+
+== AUTHOR
+-----
+Rick Scott
+rick@shadowspar.dyndns.org
+
+Patches, feature requests, and bug reports are welcome.
