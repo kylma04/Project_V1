@@ -2,5 +2,6 @@ web: bundle exec rails server -p 3000
 tailwind: bundle exec rails tailwindcss:watch
 css: yarn build:css --watch
 sidekiq: bundle exec sidekiq -C config/sidekiq.yml
+js: yarn build --watch
 
  

@@ -9,8 +9,6 @@ class VotesController < ApplicationController
 
     context = CreateVote.call(voter: voter, status: params[:vote])
 
-    if context.vote
-      redirect_to calendriers_pathcle
-    end
+    redirect_to calendriers_path if context.vote && context.success
   end
 end

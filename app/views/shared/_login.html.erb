@@ -1,0 +1,31 @@
+<div class="h-full flex w-full bg-white" data-connexion-target="loginAsParticipant">
+  <div class="hidden lg:w-1/2 lg:block h-full bg-red-200">
+    <%= image_tag "pexels-pixabay-534151.jpg", class: "w-full h-full object-cover" %>
+  </div>
+  <div class="w-full lg:w-1/2 flex h-full items-center justify-center">
+    <div>
+      <div class="w-full flex justify-center py-5">
+        <%= image_tag "Logotech.png", class: "w-16 h-16 object-cover rounded-full" %>
+      </div>
+      <h2 class="text-2xl lg:text-4xl font-bold">LOGIN AS PARTICIPANT</h2>
+      <div data-connexion-target="flashNoticeuser">
+        <% if flash[:notice] %>
+          <div class="text-red-500 text-base text-center"> <%=flash[:notice] %> </div>
+        <%end%>
+      </div>
+      <%= form_with(model: @participants, url: login_participant_path, method: :post, class: "mt-5", data: {remote: true, connexion_target: "formParticipant" }) do |form| %>
+        <div class="w-full py-2">
+          <%=form.email_field :email, required: true, placeholder: "Enter your email", class: "w-full border border-gray-400 py-2 px-1 " %>
+        </div>
+        <div class="w-full py-2">
+          <%=form.password_field :password, required: true, placeholder: "Enter your password", class: "w-full border border-gray-400 py-2 px-1 " %>
+        </div>
+        <button type="button" data-action="click->connexion#submitParticipant" class="bg-purple-600 text-white w-full py-3 my-2 cursor-pointer" > Login </button>
+        <div class="flex justify-end">
+          Login as administrator? 
+          <a href="#" id="signup-link" class="ml-2 underline text-purple-600" data-connexion-target="gotoadminsignin" data-action="click->connexion#showLoginAsAdministrator"> Log In </a>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

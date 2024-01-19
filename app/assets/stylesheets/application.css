@@ -27,11 +27,7 @@
 }
 
 body {
-  height: 100%;
-  width: 100%;
-  background-image: url("pexels-pixabay-534151.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
+  background: white;
 }
 
 header {
@@ -128,7 +124,7 @@ header {
   left: 50%;
   z-index: 10;
   width: 100%;
-  opacity: 0;
+  display: none;
   pointer-events: none;
   max-width: 720px;
   background: #fff;
