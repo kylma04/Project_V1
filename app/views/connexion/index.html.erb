@@ -1,111 +1,61 @@
-<header>
-  <nav class="navbar">
-    <a href="#" class="logo">
-      <%= image_tag('Logotech.png', alt: 'Logo') %>
-      <h2>TECHSHELTER-KITCHEN</h2>
-    </a>
-    <ul class="links">
-      <span class="close-btn material-symbols-rounded">X</span>
-    </ul>
-    <button class="login-btn">LOG IN</button>
-  </nav>
-</header>
-
-<div class="notice">
-  <% if flash[:notice] %>
-    <div> <%=flash[:notice] %> </div>
-  <%end%>
-</div>
+<div data-controller="connexion" class="h-screen overflow-hidden">
+  <header class="w-full fixed top-0 left-0 bg-white">
+    <nav class="flex items-center border-b border-gray-100 py-5" data-connexion-target="navbar">
+      <a href="#" class="flex items-center space-x-2">
+        <%= image_tag('Logotech.png', alt: 'Logo', class: "h-12 w-12 rounded-full object=center") %>
+        <h2>TECHSHELTER-KITCHEN</h2>
+      </a>
+      <%# <ul class="links" data-connexion-target="links">
+        <span class="close-btn material-symbols-rounded"  data-connexion-target="closeBtnHeader">X</span>
+      </ul>
+      <button class="login-btn"  data-connexion-target="loginBtn" data-action="click->connexion#showPopup" >LOG IN</button> %>
+    </nav>
+  </header>
 
 
-
-
-<div class="blur-bg-overlay"></div>
-  <div class="form-popup">
-    <span class="close-btn material-symbols-rounded">X</span>
-    <div class="form-box login">
-      <div class="form-details">
-        <h2 class="text-[45px] text-black">Welcome Back</h2>
-        <p class="text-[45px] text-black">Participant login panel</p>
-      </div>
-      <div class="form-content">
-        <h2>LOGIN AS PARTICIPANT</h2>
-        <%= form_with(model: @participants, url: login_participant_path, local: true, method: :post) do |form| %>
-          <div class="input-field">
-            <%=form.email_field :email, required:true %>
-            <%=form.label :email, "Enter your email"%>
-          </div>
-          <div class="input-field">
-            <%=form.password_field :password, required:true %>
-            <%=form.label :password, "Enter your password"%>
-          </div>
-          <%= form.submit "Log In", class: "thesign" %>
-          <div class="bottom-link">
-            log in as administrator?
-            <a href="#" id="signup-link">Log In</a>
-          </div>
-        <% end %>
-      </div>
-    </div>
-
-      <div class="form-box signup">
-        <div class="form-details">
-          <h2 class="text-[45px] text-black">Welcome Back</h2>
-          <p class="text-[45px] text-black">Administrator login panel</p>
-        </div>
-        <div class="form-content">
-          <h2>LOGIN AS ADMINISTRATOR</h2>
-          <%= form_with(model: @administrators, url: login_administrator_path, local: true, method: :post) do |form| %>
-            <div class="input-field">
-              <%=form.email_field :email, required:true %>
-              <%=form.label :email, "Enter your email"%>
-            </div>
-            <div class="input-field">
-              <%=form.password_field :password, required:true %>
-              <%=form.label :password, "Enter a new password"%>
-            </div>
-            <%= form.submit "Sign Up", class: "thesign"%>
-            <div class="bottom-link">
-            log in as participant?
-              <a href="#" id="login-link">Login</a>
-            </div>
-          <% end %>
-        </div>
-      </div>
+  <div class="w-full h-full pt-20"  data-connexion-target="formPopup">
+    <%= render partial: "shared/login"%>
+    <%= render partial: "shared/login_admin"%>
   </div>
 
 </div>
- 
 
 
-<script>
-  const navbarMenu = document.querySelector(".navbar .links");
-  const hideMenuBtn = navbarMenu.querySelector(".close-btn");
-  const showPopupBtn = document.querySelector(".login-btn");
-  const formPopup = document.querySelector(".form-popup");
-  const hidePopupBtn = formPopup.querySelector(".close-btn");
-  const signupLoginLink = formPopup.querySelectorAll(".bottom-link a");
-  //Show login popup
-  showPopupBtn.addEventListener("click", () => {
-    document.body.classList.toggle("show-popup");
-  });
+<script >
+  // const navbarMenu = document.querySelector(".navbar .links");
+  // const hideMenuBtn = navbarMenu.querySelector(".close-btn");
+  // const showPopupBtn = document.querySelector(".login-btn");
+  // const formPopup = document.querySelector(".form-popup");
+  // const hidePopupBtn = formPopup.querySelector(".close-btn");
+  // const signupLoginLink = formPopup.querySelectorAll(".bottom-link a");
+  // //Show login popup
+  // showPopupBtn.addEventListener("click", () => {
+  //   document.body.classList.toggle("show-popup");
+  // });
 
-  // Hide login popup
-  hidePopupBtn.addEventListener("click", () => showPopupBtn.click());
+  // // Hide login popup
+  // hidePopupBtn.addEventListener("click", () => showPopupBtn.click());
 
 
-  // Show or hide signup form
-  signupLoginLink.forEach((link) => {
-    link.addEventListener("click", (e) => {
-      e.preventDefault();
-      formPopup.classList[link.id === "signup-link" ? "add" : "remove"](
-        "show-signup"
-      );
-    });
-  });
+  // // Show or hide signup form
+  // signupLoginLink.forEach((link) => {
+  //   link.addEventListener("click", (e) => {
+  //     e.preventDefault();
+  //     formPopup.classList[link.id === "signup-link" ? "add" : "remove"](
+  //       "show-signup"
+  //     );
+  //   });
+  // });
+
+  // document.addEventListener('DOMContentLoaded',function() {
+
+  //   var flashNotice = document.getElementById('flashNotice');
+  //   flashNotice.style.display = 'block';
+
+  //   setTimeout(function(){
+  //     flashNotice.style.display = 'none';
+  //   }, 2000);
+  // });
 
 
 </script>
-
-</body>
-</html>

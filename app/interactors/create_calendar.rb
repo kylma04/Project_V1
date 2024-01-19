@@ -32,16 +32,14 @@ class CreateCalendar
     holiday_dates = get_holidays(Date.today.year) + get_holidays(Date.today.year+1)
 
     i = 1
-    # if date_actuelle.thursday?
-      while tasks_calendars.length < 5
-        jour_suivant = date_actuelle + i
-        i += 1
+    while tasks_calendars.length < 5
+      jour_suivant = date_actuelle + i
+      i += 1
 
-        next if jour_suivant.saturday? || jour_suivant.sunday? || holiday_dates.include?(jour_suivant.to_s)
-        
-        tasks_calendars << TasksCalendar.create(date_cleaning_task: jour_suivant)
-      end
-    # end
+      next if jour_suivant.saturday? || jour_suivant.sunday? || holiday_dates.include?(jour_suivant.to_s)
+      
+      tasks_calendars << TasksCalendar.create(date_cleaning_task: jour_suivant)
+    end
   end
 end
 
