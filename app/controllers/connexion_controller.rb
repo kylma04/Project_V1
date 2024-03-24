@@ -10,9 +10,9 @@ class ConnexionController < ApplicationController
 
     if (participant.present? && participant.authenticate(params[:password]))
       session[:participant_id]=participant.id
-      redirect_to calendriers_path, notice: "Logged in successfully"
+      redirect_to calendriers_path, notice: "LOGGED IN SUCCESSFULLY"
     else
-      redirect_to connexion_index_path, notice: "Invalid email or password"
+      redirect_to connexion_index_path, notice: "INVALID EMAIL OR PASSWORD"
     end
   end
 
@@ -21,9 +21,9 @@ class ConnexionController < ApplicationController
 
     if administrator.present? && administrator.authenticate(params[:password])
       session[:administrator_id]=administrator.id
-      redirect_to calendriers_path, notice: "Logged in successfully"
+      redirect_to calendriers_path, notice: "LOGGED IN SUCCESSFULLY"
     else
-      redirect_to connexion_index_path, notice: "Invalid email or password"
+      redirect_to connexion_index_path, notice: "INVALID EMAIL OR PASSWORD"
     end
   end
 

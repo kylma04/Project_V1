@@ -22,7 +22,8 @@ class CalculVote
   end
 
   def calcul_summary
-    (calcul_vote / (get_admins_vote.count + get_participants_vote.count * 2)) * 100
+    (calcul_vote / ((get_admins_vote.count * 2) + get_participants_vote.count)) * 100
   end
+  
 
 end

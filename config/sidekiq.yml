@@ -1,29 +1,39 @@
-# queue: default
-# queues:
-#   - gestion_cuisine_default
+queue: default
+queues:
+  - gestion_cuisine_default
 
-# :scheduler:
-#   :schedule:
-#     create_calendar_job:
-#       cron: '0 23 * * 3'   # [min] [hour] [day of month] [month] [day of week 0-6 sun-sat]
-#       class: "CreateCalendarJob"
+:scheduler:
+  :schedule:
+    create_calendar_job:
+      cron: '0 22 * * 3'   # [min] [hour] [day of month] [month] [day of week 0-6 sun-sat]
+      class: "CreateCalendarJob"
 
-#     attach_task_and_calendar_job:
-#       cron: '5 23 * * 3'   # [min] [hour] [day of month] [month] [day of week 0-6 sun-sat]
-#       class: "AttachTaskAndCalendarJob"
+    attach_task_and_calendar_job:
+      cron: '5 22 * * 3'
+      class: "AttachTaskAndCalendarJob"
 
-#     calcul_vote_job:
-#       cron: '30 21 * * 1-5'
-#       class: "CalculVoteJob"
+    calcul_vote_job:
+      cron: '30 21 * * 1-5'
+      class: "CalculVoteJob"
 
-#     update_vote_periode_job:
-#       cron: '30 10 * * 1-5'
-#       class: "UpdateVotePeriodeJob"
+    update_vote_periode_job:
+      cron: '30 10 * * 1-5'
+      class: "UpdateVotePeriodeJob"
 
-#     send_vote_notification_open_job:
-#       cron: '00 17 * * 1-5'
-#       class: "SendVoteNotificationOpenJob"
+    # send_vote_notification_open_job:
+    #   cron: '00 17 * * 1-5'
+    #   class: "SendVoteNotificationOpenJob"
 
-#     send_vote_notification_end_job:
-#       cron: '00 21 * * 1-5'
-#       class: "SendVoteNotificationEndJob"
+    # send_vote_notification_end_job:
+    #   cron: '00 21 * * 1-5'
+    #   class: "SendVoteNotificationEndJob"
+
+    checkparticipant_repass_job:
+      cron: '30 22 * * 1-5'
+      class: "CheckparticipantRepassJob"
+
+    punition_days_job:
+      cron: '31 21 * * 1-5'
+      class: "PunitionDaysJob"
+
+# qd tu es punis le dernier jour tu passes 2 fois

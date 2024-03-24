@@ -1,0 +1,12 @@
+<a href="/"><h1 class="text-yellow-500 px-[10px] items-center bg-gray-950 text-center font-bold w-full text-[50px]">Confirmation de suppression</h1></a><br>
+
+<p class="text-black-600 text-[3vw] text-center font-bold">Voulez-vous vraiment supprimer cet utilisateur ?</p>
+
+<p class="text-red-600 text-[1.5vw] text-center font-bold"><strong>Nom :</strong> <%= @participant.firstname %></p>
+<p class="text-red-600 text-[1.5vw] text-center font-bold"><strong>Prenoms :</strong> <%= @participant.lastname %></p>
+<p class="text-red-600 text-[1.5vw] text-center font-bold"><strong>Mail :</strong> <%= @participant.email %></p>
+
+<div class="text-center pt-[2vh] my-[2vh]">
+    <%= button_to 'Confirmer la suppression', participant_path(@participant), method: :delete, class: "bg-green-500 mb-[2vh] items-center cursor-pointer hover:text-white text-xl rounded p-2 font-bold"  %>
+    <%= button_to 'Annuler', admin_settings_path,  class: "cursor-pointer hover:text-white bg-red-500 text-xl rounded p-2 font-bold"  %>
+</div>

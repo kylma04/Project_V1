@@ -10,19 +10,23 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
 
   root to: "connexion#index"
-  resources :participants#, only: [:new, :show, :update]
-  resources :calendriers #, only: [:new, :show, :update]
+  resources :participants
+  resources :calendriers
   resources :administrators
   resources :votes
-
+  resources :connexion, only: [:index]
   get '/calendriers/:id', to: 'calendriers#index', as: 'calendriers_rt'
 
-  resources :connexion, only: [:index]
+  
 
   post '/connexion/login_participant', to: 'connexion#login_participant', as: 'login_participant'
   post '/connexion/login_administrator', to: 'connexion#login_administrator', as: 'login_administrator'
 
   delete '/connexion/logout_participant', to: 'connexion#logout_participant', as: 'logout_participant'
   delete '/connexion/logout_administrator', to: 'connexion#logout_administrator', as: 'logout_administrator'
+
+  post '/participants/admin_settings', to: 'participants#show', as: 'admin_settings'
+  get '/participants/id=:id/confirm_destroy', to: 'participants#confirm_destroy', as: 'confirm_destroy_participant'
+  
 
 end

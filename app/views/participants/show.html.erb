@@ -1,0 +1,57 @@
+<div data-controller="connexion" class="h-screen overflow-hidden">
+  <header class="w-full fixed top-0 left-0 bg-white">
+    <nav class="flex items-center border-b border-gray-100 py-5" data-connexion-target="navbar">
+      <a href="/" class="flex items-center space-x-2">
+        <%= image_tag('Logotech.png', alt: 'Logo', class: "h-12 w-12 rounded-full object=center") %>
+        <h2>TECHSHELTER-KITCHEN</h2>
+      </a>
+    </nav>
+  </header>
+
+
+  <div class="mt-[15%]  lg:mt-[2%] gb-red-500">
+
+    <nav class="sleeptext w-[95%] mx-[2.5%] bg-gray-400 text-center font-bold lg:text-[25px] text-[15px] rounded-t-md ">
+    </nav>
+
+    <div class="flex justify-center w-full">
+      <table class="w-[95%] !lg:text-[14px] text-[11px] bg-slate-200 !h-[10px]!md:h-[300px] text-center font-bold lg:text-[25px]">
+        <tr>
+          <th class="lg:m-2 p-auto border-solid border-2 border-white text-black">Firstname</th>
+          <th class="lg:m-2 p-auto border-solid border-2 border-white text-black">Lastname</th>
+          <th class="lg:m-2 p-auto border-solid border-2 border-white text-black">Email</th>
+          <th class="lg:m-2 p-auto border-solid border-2 border-white text-black" colspan="2">Options</th>
+        </tr>
+
+        <% @participants.each do |participant| %>
+          <tr>
+            <th class="lg:m-3 p-auto border-solid border-2 border-white text-gray-700"><%= participant.firstname %></th>
+            <th class="lg:m-3 p-auto border-solid border-2 border-white text-gray-700"><%= participant.lastname %></th>
+            <th class="lg:m-3 p-2 border-solid border-2 border-white text-gray-700"><%= participant.email %></th>
+            <%# <td class="border-solid border-2 border-black hover:bg-gray-900 text-blue-600"><%= link_to 'Modifier', edit_participant_path(participant) </td> %>
+            <td class="border-solid border-2 border-black hover:bg-gray-900 text-red-600"><%= link_to 'Supprimer', confirm_destroy_participant_path(participant) %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var phrase = "L.I.S.T.E D.E.S P.A.R.T.I.C.I.P.A.N.T.S";
+      var navElement = document.querySelector(".sleeptext");
+
+      phrase.split('').forEach(function(char, index) {
+        setTimeout(function() {
+          var newChar = document.createElement("span");
+          if (char === ' ') {
+            newChar.innerText = '\u00A0';
+          } else {
+            newChar.innerText = char;
+          }
+          navElement.appendChild(newChar);
+        }, 100 * index);
+      });
+    });
+  </script> 
+
+</div>
