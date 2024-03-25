@@ -469,17 +469,18 @@ input[type="checkbox"]:checked ~ .icon:before{
 
 ul{
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 74px;
+  right: 0;
   margin: 0;
   padding: 50px 20px;
   box-sizing: border-box;
   width: 350px;
-  height: 100vh;
-  background: #000;
+  height: 50vh;
+  background: rgb(33, 33, 33);
   transition: 1s;
   z-index: 100000;
   overflow-y: auto;
+  border-radius: 3%;
 
 }
 ul li{
@@ -497,9 +498,10 @@ ul li a{
 }
 
 ul li a:hover{
-  transform: translateX(10px);
+  transform: translateX(20px);
   color: yellow;
 }
 input[type="checkbox"]:checked ~ ul{
-  left: -350px;
+  right: -350px;
 }
+

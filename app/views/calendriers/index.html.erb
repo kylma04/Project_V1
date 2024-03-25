@@ -1,78 +1,57 @@
-  <nav class="bg-gray-800 p-2">
-    <div class="flex items-center justify-between">
-      <div class="text-white">
-        <% if session[:participant_id]%>
-          <p class="lg:text-[20px] text-[13px] text-bold">Vous êtes connecté en tant que participant</p>
-        <% elsif session[:administrator_id] %>
-          <p class="lg:text-[20px] text-[13px] text-bold">Vous êtes connecté en tant qu'administrateur</p>
-        <% end %>
-      </div>
-      <div class="flex">
-        <% if session[:participant_id]%>
-          <input type="checkbox" name="" checked="checked">
-          <span class="icon"></span>
-          <ul>
-            <li>
-              <a>
-                <%= link_to 'Modifier mes informations', edit_participant_path(session[:participant_id]) %>
-              </a>
-            </li>
-
-            <li>
-              <a>
-                <%= form_with url: logout_participant_path, method: :delete, data: {confirm: "Êtes-vous sur de vouloir vous deconnecter ?"} do |f| %>
-                  <%=f.submit 'Déconnexion',class:"cursor-pointer lg:text-[20px] text-red-500 font-bold  text-[15px]"%>
-                <% end %>
-              </a>
-            </li>
-          </ul>
-        <% elsif session[:administrator_id] %>
-          <%= form_with url: admin_settings_path do |f| %>
-            <%= f.submit 'Admin params',class:"lg:text-[20px] mr-8 cursor-pointer text-green-500 font-bold  text-[15px]"%>
-          <% end %>
-          <%= form_with url: logout_administrator_path, method: :delete, data: {confirm: "Êtes-vous sur de vouloir vous deconnecter ?"} do |f| %>
-            <%= f.submit 'Déconnexion',class:"lg:text-[20px] cursor-pointer text-red-500 font-bold  text-[15px]"%>
-          <% end %>
-        <% end %>
-      </div>
+<nav class="bg-gray-800 p-2">
+  <div class="flex items-center justify-between">
+    <div class="text-white">
+      <% if session[:participant_id]%>
+        <p class="lg:text-[20px] text-[13px] text-bold">Vous êtes connecté en tant que participant</p>
+      <% elsif session[:administrator_id] %>
+        <p class="lg:text-[20px] text-[13px] text-bold">Vous êtes connecté en tant qu'administrateur</p>
+      <% end %>
     </div>
-  </nav>
+    <div class="flex">
+      <% if session[:participant_id]%>
+        <input type="checkbox" name="" checked="checked">
+        <span class="icon"></span>
+        <ul>
+          <li>
+            <a>
+              <%= link_to 'Modifier mes informations', edit_participant_path(session[:participant_id]) %>
+            </a>
+          </li>
 
-<div id="flashNoticeconexiontrue">
-  <% if flash[:notice] %>
-    <div class="bg-green-800 text-black font-semibold text-4xl text-center"> <%=flash[:notice] %> </div>
-  <%end%>
-</div>
-
-<div class="mt-[15%]  lg:mt-[2%] gb-red-500">
-
-  <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    var phrase = "C.A.L.E.N.D.R.I.E.R   D.E   N.E.T.T.O.Y.A.G.E";
-    var navElement = document.querySelector(".sleeptext");
-
-    phrase.split('').forEach(function(char, index) {
-      setTimeout(function() {
-        var newChar = document.createElement("span");
-        if (char === ' ') {
-          newChar.innerText = '\u00A0';
-        } else {
-          newChar.innerText = char;
-        }
-        navElement.appendChild(newChar);
-      }, 100 * index);
-    });
-  });
-</script>
-
-<nav class="sleeptext w-[95%] mx-[2.5%] bg-gray-400 text-center font-bold lg:text-[25px] text-[15px] rounded-t-md ">
+          <li>
+            <a>
+              <%= form_with url: logout_participant_path, method: :delete, data: {confirm: "Êtes-vous sur de vouloir vous deconnecter ?"} do |f| %>
+                <%=f.submit 'Déconnexion',class:"cursor-pointer lg:text-[20px] text-red-500 font-bold  text-[15px]"%>
+              <% end %>
+            </a>
+          </li>
+        </ul>
+      <% elsif session[:administrator_id] %>
+        <%= form_with url: admin_settings_path do |f| %>
+          <%= f.submit 'Admin params',class:"lg:text-[20px] mr-8 cursor-pointer text-green-500 font-bold  text-[15px]"%>
+        <% end %>
+        <%= form_with url: logout_administrator_path, method: :delete, data: {confirm: "Êtes-vous sur de vouloir vous deconnecter ?"} do |f| %>
+          <%= f.submit 'Déconnexion',class:"lg:text-[20px] cursor-pointer text-red-500 font-bold  text-[15px]"%>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
 </nav>
 
 
 
+<div class="mt-[15%]  lg:mt-[2%]" >
+  
+  <div id="flashNoticeconexiontrue">
+    <% if flash[:notice] %>
+      <div class="bg-green-800 text-black font-semibold text-4xl text-center"> <%=flash[:notice] %> </div>
+    <%end%>
+  </div>
 
+  <nav class="sleeptext w-[95%] mx-[2.5%] bg-gray-400 text-center font-bold lg:text-[25px] text-[15px] rounded-t-md ">
+  </nav>
 
-  <div class="flex justify-center w-full">
+  <div class="flex justify-center w-full section4">
     <table class="w-[95%] !lg:text-[14px] text-[11px] bg-slate-200 !h-[10px]!md:h-[300px] text-center font-bold lg:text-[25px]">
       <tr>
         <th class="lg:m-2 p-auto border-solid border-2 border-white text-black">Cleaning Day</th>
@@ -116,6 +95,8 @@
 
 </div>
 
+
+
 <script>
   document.addEventListener('DOMContentLoaded',function() {
 
@@ -128,3 +109,21 @@
   });
 
 </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var phrase = "CALENDRIER   DE   NETTOYAGE";
+      var navElement = document.querySelector(".sleeptext");
+
+      phrase.split('').forEach(function(char, index) {
+        setTimeout(function() {
+          var newChar = document.createElement("span");
+          if (char === ' ') {
+            newChar.innerText = '\u00A0';
+          } else {
+            newChar.innerText = char;
+          }
+          navElement.appendChild(newChar);
+        }, 100 * index);
+      });
+    });
+  </script>
