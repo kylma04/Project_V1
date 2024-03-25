@@ -1,3 +1,35 @@
 Doit revoir l'explication de: 
                              -Punition_days.rb(interactor)
                              -Punition_days_job(job)
+
+
+
+last navbar
+
+
+<nav class="bg-gray-800 p-2">
+  <div class="flex items-center justify-between">
+    <div class="text-white">
+      <% if session[:participant_id]%>
+        <p class="lg:text-[20px] text-[13px] text-bold">Vous êtes connecté en tant que participant</p>
+      <% elsif session[:administrator_id] %>
+        <p class="lg:text-[20px] text-[13px] text-bold">Vous êtes connecté en tant qu'administrateur</p>
+      <% end %>
+    </div>
+    <div class="flex">
+      <% if session[:participant_id]%>
+        <p class="lg:text-[20px] mr-8 cursor-pointer text-green-500 font-bold  text-[15px]"><%= link_to 'Modifier', edit_participant_path(session[:participant_id]) %></p>
+        <%= form_with url: logout_participant_path, method: :delete, data: {confirm: "Êtes-vous sur de vouloir vous deconnecter ?"} do |f| %>
+          <%=f.submit 'Déconnexion',class:"cursor-pointer lg:text-[20px] text-red-500 font-bold  text-[15px]"%>
+        <% end %>
+      <% elsif session[:administrator_id] %>
+        <%= form_with url: admin_settings_path do |f| %>
+          <%= f.submit 'Admin params',class:"lg:text-[20px] mr-8 cursor-pointer text-green-500 font-bold  text-[15px]"%>
+        <% end %>
+        <%= form_with url: logout_administrator_path, method: :delete, data: {confirm: "Êtes-vous sur de vouloir vous deconnecter ?"} do |f| %>
+          <%= f.submit 'Déconnexion',class:"lg:text-[20px] cursor-pointer text-red-500 font-bold  text-[15px]"%>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</nav>
