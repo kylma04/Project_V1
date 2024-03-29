@@ -69,8 +69,6 @@ group :test do
 end
 
 
-# gem "tailwindcss-rails", "~> 2.0" ">= 0"
-
 gem 'tailwindcss-rails', '~> 2.0', '>= 2.0.30'
 
 
